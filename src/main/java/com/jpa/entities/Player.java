@@ -2,7 +2,6 @@ package com.jpa.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +18,9 @@ public class Player {
 
     @Column(name = "last_name")
     private String lastName;
-    private Integer age;
     private String nationality;
+    private Integer age;
+    private String position;
 
     @ManyToOne(targetEntity = Club.class)
     @JoinColumn(name = "id_club")
