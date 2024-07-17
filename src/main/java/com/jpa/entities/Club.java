@@ -29,6 +29,7 @@ public class Club {
     private List<Player> players;
 
     @ManyToOne(targetEntity = FootballAssociation.class)
+    @JoinColumn(name = "id_football_association")
     private FootballAssociation footballAssociation;
 
     @ManyToMany(targetEntity = FootballCompetition.class, fetch = FetchType.LAZY)
