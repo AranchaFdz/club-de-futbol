@@ -1,9 +1,6 @@
 package com.jpa.entities;
 
 import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "coaches")
 public class Coach {
 
     @Id
@@ -26,4 +24,8 @@ public class Coach {
 
     private String nationality;
     private Integer age;
+
+    @OneToOne
+    @JoinColumn(name = "club_id")
+    private Club club;
 }

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "football_competiotions")
 public class FootballCompetition {
 
     @Id
@@ -18,8 +19,8 @@ public class FootballCompetition {
     private Long id;
     private String name;
 
-    @Column(name = "cuantity_price")
-    private int cuantityPrice;
+    @Column(name = "quantity_price")
+    private int quantityPrice;
 
     @Column(name = "start_date", columnDefinition = "DATE")
     private LocalDate startDate;

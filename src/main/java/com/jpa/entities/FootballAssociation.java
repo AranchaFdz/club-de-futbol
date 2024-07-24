@@ -2,19 +2,19 @@ package com.jpa.entities;
 
 
 import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "football_associations")
 public class FootballAssociation {
 
     @Id
@@ -24,6 +24,7 @@ public class FootballAssociation {
     private String country;
     private String president;
 
-    @OneToMany(targetEntity = Club.class, fetch = FetchType.LAZY, mappedBy = "footballAssociation")
-    private List<Club> clubs;
+    @JsonBackReference
+    @OneToMany(mappedBy = "footballAssociation")
+    private List<Club> club;
 }

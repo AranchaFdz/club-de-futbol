@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "clubs")
 public class Club {
 
     @Id
@@ -21,18 +23,14 @@ public class Club {
     private Long id;
     private String name;
 
-    @OneToOne(targetEntity = Coach.class, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_coach")
-    private Coach coach;
-
     @OneToMany(targetEntity = Player.class, fetch = FetchType.LAZY, mappedBy = "club")
     private List<Player> players;
 
-    @ManyToOne(targetEntity = FootballAssociation.class)
+    @ManyToOne
     @JoinColumn(name = "id_football_association")
     private FootballAssociation footballAssociation;
 
     @ManyToMany(targetEntity = FootballCompetition.class, fetch = FetchType.LAZY)
     @JoinTable(name = "club_competitions", joinColumns = @JoinColumn(name = "club"), inverseJoinColumns = @JoinColumn(name = "competition"))
-    private List<FootballCompetition> footballCompetitions;
+    private List<FootballCompetition> footballCompetition;
 }
