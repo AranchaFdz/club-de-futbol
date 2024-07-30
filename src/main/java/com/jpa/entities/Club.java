@@ -5,17 +5,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "clubs")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Club {
 
     @Id
@@ -23,7 +25,7 @@ public class Club {
     private Long id;
     private String name;
 
-    @OneToMany(targetEntity = Player.class, fetch = FetchType.LAZY, mappedBy = "club")
+    @OneToMany(mappedBy = "club", fetch = FetchType.EAGER)
     private List<Player> players;
 
     @ManyToOne
