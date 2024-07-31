@@ -1,15 +1,19 @@
 package com.jpa.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "players")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "players")
+@Builder
 public class Player {
 
     @Id
@@ -23,7 +27,8 @@ public class Player {
     private Integer age;
     private String position;
 
-    @ManyToOne(targetEntity = Club.class)
-    @JoinColumn(name = "id_club")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @JoinColumn(name = "club_id", nullable = true)
     private Club club;
 }
